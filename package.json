@@ -20,7 +20,7 @@
     "predeploy": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "homepage": "https://arghajit47.github.io/performance-dashboard-react/",
+    "homepage": "https://arghajit47.github.io/performance-report-dashboard/",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
