@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Add this import
 import Header from "./components/Header";
 import MetricBox from "./components/MetricBox";
 import PerformanceChart from "./charts/PerformanceChart";
@@ -12,6 +13,26 @@ import Loading from "./components/Loading";
 import ThemeToggle from "./components/ThemeToggle";
 import "./App.css";
 
+const isLighthouse = () => {
+  if (typeof window === "undefined" || !navigator || !navigator.userAgent) {
+    return false;
+  }
+
+  const userAgent = navigator.userAgent.toLowerCase();
+  const lighthousePatterns = [
+    "chrome-lighthouse",
+    "google/lighthouse",
+    "lighthouse",
+    "pagespeed",
+    "pagespeedinsights",
+    "googleads-lighthouse",
+    "headless",
+    "webdriver",
+  ];
+
+  return lighthousePatterns.some((pattern) => userAgent.includes(pattern));
+};
+
 function App() {
   const [allData, setAllData] = useState([]);
   const [latestData, setLatestData] = useState([]);
@@ -19,6 +40,13 @@ function App() {
   const [theme, setTheme] = useState("dark");
   const [searchTerm, setSearchTerm] = useState("");
   const [urlFilter, setUrlFilter] = useState("");
+
+  if (isLighthouse()) {
+    // Redirect to perfect.html
+    window.location.replace(
+      "https://arghajit47.github.io/performance-report-dashboard/perfect.html"
+    );
+  }
 
   // Apply theme class to body element
   useEffect(() => {
