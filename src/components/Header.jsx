@@ -1,9 +1,11 @@
+// components/Header.jsx
+
 import React from "react";
 
-const Header = ({ children }) => {
+const Header = ({ title = "Performance Audit Dashboard", children }) => {
   return (
     <div>
-      <div className="header">Performance Audit Dashboard</div>
+      <div className="header">{title}</div>
       {children}
     </div>
   );

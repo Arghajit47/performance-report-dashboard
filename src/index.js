@@ -1,8 +1,11 @@
+// src/index.js
+
 import React from "react";
-import ReactDOM from "react-dom/client"; // ✅ This is what creates the root
-import { HashRouter } from "react-router-dom";
-import "./App.css";
+import ReactDOM from "react-dom/client";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import "./visual.css";
 import App from "./App";
+import VisualDashboard from "./components/VisualDashboard";
 import reportWebVitals from "./reportWebVitals";
 
 const isLighthouse = () => {
@@ -26,22 +29,22 @@ const isLighthouse = () => {
 };
 
 if (isLighthouse()) {
-  // Redirect to perfect.html
   window.location.replace(
     "https://arghajit47.github.io/performance-report-dashboard/perfect.html"
   );
 } else {
-  // ✅ Use ReactDOM to create the root
   const root = ReactDOM.createRoot(document.getElementById("root"));
 
   root.render(
     <React.StrictMode>
-      {" "}
-      {/* ✅ StrictMode is from React */}
       <HashRouter>
-        <App />
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/visual" element={<VisualDashboard />} />
+        </Routes>
       </HashRouter>
     </React.StrictMode>
   );
 }
+
 reportWebVitals();
