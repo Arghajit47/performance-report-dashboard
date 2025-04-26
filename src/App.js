@@ -11,6 +11,7 @@ import DeviceChart from "./charts/DeviceChart";
 import DataTable from "./components/DataTable";
 import Loading from "./components/Loading";
 import ThemeToggle from "./components/ThemeToggle";
+import SidebarMenu from "./components/SidebarMenu";
 import "./App.css";
 
 const isLighthouse = () => {
@@ -41,6 +42,7 @@ function App() {
   const [theme, setTheme] = useState("dark");
   const [searchTerm, setSearchTerm] = useState("");
   const [urlFilter, setUrlFilter] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   if (isLighthouse()) {
     // Redirect to perfect.html
@@ -136,42 +138,54 @@ function App() {
 
   return (
     <div className={`app-container ${theme}`}>
-      <ThemeToggle toggleTheme={toggleTheme} theme={theme} />
+      <SidebarMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <button
+        className="hamburger-button"
+        onClick={() => setIsMenuOpen(true)}
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
 
       <Header>
-        <div className="filters-container">
-          <div className="global-search-container">
-            <input
-              type="text"
-              placeholder="Search by Test Name"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="global-search-input"
-            />
+        <div className="header-content">
+          <div className="filters-container">
+            {/* Keep your existing filter components */}
+            <div className="global-search-container">
+              <input
+                type="text"
+                placeholder="Search by Test Name"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="global-search-input"
+              />
+            </div>
+
+            <div className="url-filter">
+              <label htmlFor="url-filter">Filter by URL:</label>
+              <select
+                id="url-filter"
+                value={urlFilter}
+                onChange={(e) => setUrlFilter(e.target.value)}
+                disabled={uniqueUrls.length === 0}
+              >
+                <option value="">All URLs</option>
+                {uniqueUrls.map((url) => (
+                  <option key={url} value={url}>
+                    {url}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {(searchTerm || urlFilter) && (
+              <button onClick={clearAllFilters} className="clear-all-filters">
+                Clear All Filters
+              </button>
+            )}
           </div>
 
-          <div className="url-filter">
-            <label htmlFor="url-filter">Filter by URL:</label>
-            <select
-              id="url-filter"
-              value={urlFilter}
-              onChange={(e) => setUrlFilter(e.target.value)}
-              disabled={uniqueUrls.length === 0}
-            >
-              <option value="">All URLs</option>
-              {uniqueUrls.map((url) => (
-                <option key={url} value={url}>
-                  {url}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {(searchTerm || urlFilter) && (
-            <button onClick={clearAllFilters} className="clear-all-filters">
-              Clear All Filters
-            </button>
-          )}
+          <ThemeToggle toggleTheme={toggleTheme} theme={theme} />
         </div>
       </Header>
 

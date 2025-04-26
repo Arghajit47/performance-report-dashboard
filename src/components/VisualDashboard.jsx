@@ -6,7 +6,9 @@ import Modal from "./Modal.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
 import Header from "./Header.jsx";
 import PieChart from "../charts/PieChart.jsx";
+import SidebarMenu from "./SidebarMenu";
 import "../visual.css";
+
 const supabaseUrl =
   "https://ocpaxmghzmfbuhxzxzae.supabase.co/storage/v1/object/public/visual-dashboard-json/merged-results.json";
 
@@ -33,6 +35,7 @@ const VisualDashboard = () => {
   const [theme, setTheme] = useState("dark");
   const [statusFilter, setStatusFilter] = useState(null);
   const [deviceFilter, setDeviceFilter] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const passed = testData.filter((t) => t.status === "passed").length;
   const failed = testData.filter((t) => t.status === "failed").length;
@@ -68,6 +71,14 @@ const VisualDashboard = () => {
   return (
     <div>
       <ThemeToggle toggleTheme={toggleTheme} theme={theme} />
+      <SidebarMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <button
+        className="hamburger-button"
+        onClick={() => setIsMenuOpen(true)}
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
       <Header title="Visual Test Dashboard" />
 
       <PieChart
