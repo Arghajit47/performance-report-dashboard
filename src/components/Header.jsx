@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const Header = ({ title = "Performance Audit Dashboard", children }) => {
+const Header = ({ title, children }) => {
   return (
     <div>
       <div className="header">{title}</div>

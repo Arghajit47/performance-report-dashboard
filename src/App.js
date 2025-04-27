@@ -121,7 +121,7 @@ function App() {
         ☰
       </button>
 
-      <Header>
+      <Header title="Performance Audit Dashboard">
         <div className="header-content">
           <div className="filters-container">
             {/* Keep your existing filter components */}
