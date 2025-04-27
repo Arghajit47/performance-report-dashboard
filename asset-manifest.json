@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/performance-report-dashboard/static/css/main.f381363e.css",
-    "main.js": "/performance-report-dashboard/static/js/main.d80a6cb0.js",
+    "main.css": "/performance-report-dashboard/static/css/main.211643fe.css",
+    "main.js": "/performance-report-dashboard/static/js/main.77a69dbb.js",
     "static/js/453.f82387b7.chunk.js": "/performance-report-dashboard/static/js/453.f82387b7.chunk.js",
     "index.html": "/performance-report-dashboard/index.html",
-    "main.f381363e.css.map": "/performance-report-dashboard/static/css/main.f381363e.css.map",
-    "main.d80a6cb0.js.map": "/performance-report-dashboard/static/js/main.d80a6cb0.js.map",
+    "main.211643fe.css.map": "/performance-report-dashboard/static/css/main.211643fe.css.map",
+    "main.77a69dbb.js.map": "/performance-report-dashboard/static/js/main.77a69dbb.js.map",
     "453.f82387b7.chunk.js.map": "/performance-report-dashboard/static/js/453.f82387b7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f381363e.css",
-    "static/js/main.d80a6cb0.js"
+    "static/css/main.211643fe.css",
+    "static/js/main.77a69dbb.js"
   ]
 }
