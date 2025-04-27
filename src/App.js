@@ -14,26 +14,7 @@ import ThemeToggle from "./components/ThemeToggle";
 import SidebarMenu from "./components/SidebarMenu";
 import "./App.css";
 
-const isLighthouse = () => {
-  if (typeof window === "undefined" || !navigator || !navigator.userAgent) {
-    return false;
-  }
 
-  const userAgent = navigator.userAgent.toLowerCase();
-  const lighthousePatterns = [
-    "chrome-lighthouse",
-    "google/lighthouse",
-    "lighthouse",
-    "pagespeed",
-    "pagespeedinsights",
-    "googleads-lighthouse",
-    "headless",
-    "webdriver",
-    "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Mobile Safari/537.36",
-  ];
-
-  return lighthousePatterns.some((pattern) => userAgent.includes(pattern));
-};
 
 function App() {
   const [allData, setAllData] = useState([]);
@@ -43,13 +24,6 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [urlFilter, setUrlFilter] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  if (isLighthouse()) {
-    // Redirect to perfect.html
-    window.location.replace(
-      "https://arghajit47.github.io/performance-report-dashboard/perfect.html"
-    );
-  }
 
   // Apply theme class to body element
   useEffect(() => {
